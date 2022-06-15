@@ -1,13 +1,20 @@
 const http=require('http')
+const fs=require('fs')
+const friends1=fs.readFileSync('friends.json','utf-8',(err, file)=>{
+    if(err){
+        console.log('Error reading filer')
+    }else{
+        console.log(file)
+    }
+})
+
 const server=http.createServer((req,res)=>{
+    const items=req.url.split('/')
     if(req.url==='/message'){
         res.writeHead(200,{
             'Content-Type':'Application/json'
         })
-        res.end(JSON.stringify({
-            id:1,
-            name:'Ndeta Innocent'
-        }))
+        res.end(friends1)
     }else if(req.url==='/friends'){
         res.setHeader('Content-Type','text/html')
         res.write('<html>')
