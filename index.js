@@ -10,7 +10,7 @@ const friends1=fs.readFileSync('friends.json','utf-8',(err, file)=>{
 
 const server=http.createServer((req,res)=>{
     const items=req.url.split('/')
-    if(req.url==='/message'){
+    if(req.method==='GET'&& req.url==='/message'){
         res.writeHead(200,{
             'Content-Type':'Application/json'
         })
